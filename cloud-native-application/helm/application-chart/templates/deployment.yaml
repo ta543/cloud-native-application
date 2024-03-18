@@ -1,0 +1,43 @@
+{{- if eq .Values.serviceName "service1" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.serviceName }}
+spec:
+  replicas: {{ .Values.service1.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.serviceName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.serviceName }}
+    spec:
+      containers:
+      - name: {{ .Values.serviceName }}
+        image: {{ .Values.service1.image.repository }}:{{ .Values.service1.image.tag }}
+        ports:
+        - containerPort: {{ .Values.service1.containerPort }}
+{{- end }}
+
+{{- if eq .Values.serviceName "service2" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.serviceName }}
+spec:
+  replicas: {{ .Values.service2.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.serviceName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.serviceName }}
+    spec:
+      containers:
+      - name: {{ .Values.serviceName }}
+        image: {{ .Values.service2.image.repository }}:{{ .Values.service2.image.tag }}
+        ports:
+        - containerPort: {{ .Values.service2.containerPort }}
+{{- end }}

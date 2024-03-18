@@ -1,0 +1,17 @@
+serviceName: service1
+
+service1:
+  replicaCount: 3
+  image:
+    repository: ta543/service1
+    tag: latest
+  containerPort: 3000
+  servicePort: 80
+
+service2:
+  replicaCount: 3
+  image:
+    repository: ta543/service2
+    tag: latest
+  containerPort: 8000
+  servicePort: 80
